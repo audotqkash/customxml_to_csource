@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- sample 
+<car model="typeA">          
+# typeAのエラートレース辞書であることを示します。
+
+  <class id="10" name="sportA" lot="0x3700000000">
+  # class1～classNまでの領域の定義です。
+  # * idは10進数,つまり1～23の値
+  # * nameは領域通称,つまり"class1"～"classN"の文字列
+  # * lotは、lot#
+    <major id="0x0000">
+    # majorIDの定義です。
+    # cttbr.funids = 0x0000
+      <brief> This is Class10 Major 0x0000 </brief>
+      # Function IDの説明です。1行(50文字程度)としてください
+  </class>
+</car>
+
+
+-->
+<car model="toyota">
+    <class id="1" name="sport1" lot="0x3700000000">
+        <major id="0x0000">
+            <brief>This is Class 1 Major 0x0000</brief>
+            <details>
+                1. エンジンタイプ #1
+                2. シャーシタイプ #1
+                3. サスペンションタイプ #1
+            </details>
+            <values>
+                <value offset="0" length="1" mask="0xff">
+                    <note value="0x01">C1M0 ------01 --------</note>
+                    <note value="0x02">C1M0 ------02 --------</note>
+                </value>
+                <value offset="4" length="4" mask="0xffffffff">
+                    <note value="0x00000001">C1M0 -------- 000000001</note>
+                    <note value="0x00000002">C1M0 -------- 000000002</note>
+                </value>
+            </values>
+        </major>
+        <major id="0xffff">
+            <brief>This is errt1-ffff</brief>
+        </major>
+    </class>
+    <class id="10" name="errtA">
+        <major id="0x0000">
+            <brief>This is Class 10 Major 0x0000</brief>
+            <details>
+            </details>
+        </major>
+        <major>
+            <brief>This is Unknown</brief>
+            <details>
+            </details>
+        </major>
+        <major id="0xffff">
+            <brief>This is errtA-ffff</brief>
+            <values>
+                <value offset="6" length="1" mask="0x0f">
+                    <note value="0x01">function 0000-1</note>
+                    <note value="0x02">function 0000-2</note>
+                </value>
+                <value offset="7" length="1" mask="0xf0">
+                    <note value="0x06">ここにエラーがあります。問題を解決するには～を実行してください。</note>
+                    <note value="0x90">ここにエラーがあります。</note>
+                </value>
+            </values>
+        </major>
+    </class>
+    <class id="11" name="errtB">
+        <test id="0x0000">
+            <brief>This is Class 11 Test 0x0000</brief>
+            <details>
+            </details>
+            <values>
+            </values>
+        </test>
+        <test>
+            <brief>This is Unknown</brief>
+            <details>
+            </details>
+            <values>
+            </values>
+        </test>
+        <test id="0xffff">
+            <brief>This is Class 11 Test 0xffff</brief>
+            <details>
+            </details>
+            <values>
+            </values>
+        </test>
+    </class>
+</car>
